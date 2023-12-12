@@ -15,4 +15,6 @@ routes.post("/user", userController.create)
 
 routes.get("/users", userController.read)
 
+routes.post("/login", userController.login)
+
 export default routes
