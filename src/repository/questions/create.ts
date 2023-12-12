@@ -2,22 +2,31 @@ import {prisma} from '../../database/prisma'
 import { User } from '@prisma/client';
 
 interface ICreateQuestion {
-  name:  string,
-  email: string,
-  password: string,
+  userID: string
+  title: string
+  content: string
 }
 
 
 export default async({
-    name,
-    email,
-    password
-}: ICreateUser): Promise<User> =>{
-    return await prisma.user.create({
+    userID,
+    title,
+    content
+}: ICreateQuestion) => {
+    return await prisma.question.create({
         data: {
-            name,
-            email,
-            password
+          content,
+          title,
+          userId: userID,
+        },
+        select:{
+          title: true,
+          content: true,
+          author: {
+            select:{
+              name: true
+            }
+          }
         }
     })
 }
