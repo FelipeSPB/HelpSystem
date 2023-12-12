@@ -16,11 +16,16 @@ export default async ({
         message: "Os Campos De Email ou Senha Estão Vazios",
       }
     }
-    
+
 
     let user = await getLoginInfo({email: emailField});
 
-    console.log(user)
+    if(!user){
+      return{
+          status: 400,
+          message: "Usuário Não Encontrado",
+        }
+    }
 
     if(user.password != passwordField){
       return{
