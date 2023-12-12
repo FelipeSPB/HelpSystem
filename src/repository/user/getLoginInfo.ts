@@ -5,8 +5,7 @@ interface ILog{
   email: string,
 }
 
-
-export default async ({email}:ILog):Promise<User> =>{
+export default async ({email}:ILog)=>{
     return await prisma.user.findFirst({
       where:{
         email,

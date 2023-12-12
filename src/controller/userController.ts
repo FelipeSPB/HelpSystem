@@ -4,13 +4,13 @@ import readUser from '../useCases/users/readUser'
 import login from '../useCases/users/login'
 
 interface ICreateUserBody {
-    email:string,
-    name: string,
-    password:string,
+    email:string
+    name: string
+    password:string
 }
 
 interface ILogFields {
-  email: string,
+  email: string
   password: string
 }
 
@@ -39,7 +39,7 @@ export class  UserController {
       return response.status(200).send(users)
     }
     async login(
-      request: Request<ILogFields>,
+      request: Request,
       response: Response,
     ){
       const {email, password} = request.body;
