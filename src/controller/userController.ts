@@ -1,5 +1,6 @@
 import {Request, Response} from 'express'
 import createUser from '../useCases/users/createUser';
+import readUser from '../useCases/users/readUser'
 
 interface ICreateUserBody {
     email:string,
@@ -14,7 +15,7 @@ export class  UserController {
         response: Response,
     ):Promise<Response>{
         const {email, password, name} = request.body;
-        
+
         const user = await createUser({
             email,
             name,
@@ -22,5 +23,13 @@ export class  UserController {
         })
 
         return response.status(user.status).send(user)
+    }
+    async read(
+      request: Request,
+      response: Response,
+    ){
+      let users = await readUser();
+
+      return response.status(200).send(users)
     }
 }

@@ -13,4 +13,6 @@ routes.get("/", main.mainPage)
 
 routes.post("/user", userController.create)
 
+routes.get("/users", userController.read)
+
 export default routes

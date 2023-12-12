@@ -19,5 +19,4 @@ export default async ({
         message: "Usuário Criado Com Sucesso !",
         data: user,
     }
-
 }
