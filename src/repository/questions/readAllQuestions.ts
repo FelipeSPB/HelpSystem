@@ -1,7 +1,7 @@
 import {prisma} from '../../database/prisma'
 
 
-export default async ():Promise<OutputQuestions[]> =>{
+export default async () =>{
     return await prisma.question.findMany({
       select: {
           id: true,

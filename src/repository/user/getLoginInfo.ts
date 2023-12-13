@@ -14,6 +14,7 @@ export default async ({email}:ILog)=>{
           id: true,
           name: true,
           email: true,
+          is_admin: true,
           password: true
         }
       }

@@ -17,6 +17,10 @@ interface IGetAQuestion {
   questionId: string
 }
 
+interface IGetAllQuestions {
+  authHeader: string
+}
+
 export class QuestionController {
    async create(
      request: Request<ICreateQuestionParam,ICreateQuestionBody>,
@@ -34,10 +38,14 @@ export class QuestionController {
      return response.status(question.status).send(question)
    }
    async read(
-    request: Request,
+    request: Request<IGetAllQuestions>,
     response: Response
    ){
-      const questions = await readQuestions()
+
+    const authHeader = request.headers.authorization as string;
+      const questions = await readQuestions({
+        authHeader
+      })
 
       return response.status(questions.status).send(questions)
    }

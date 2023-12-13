@@ -10,11 +10,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model User {
   id        String     @id @default(uuid())
   name      String     
   email     String     @unique
   password  String
+  is_admin      Boolean
   answers   Answer[]
   questions Question[]
 }
@@ -23,17 +25,18 @@ model Question {
   id      String   @id @default(uuid())
   title   String
   content String
-  author  User     @relation(fields: [authorId], references: [id])
-  authorId  String 
+  author  User     @relation(fields: [author_id], references: [id])
+  author_id  String 
   answers Answer[]
     
 }
 
 model Answer {
   id         Int      @id @default(autoincrement())
-  author     User     @relation(fields: [authorId], references: [id])
-  authorId   String
-  question   Question @relation(fields: [questionId], references: [id])
-  questionId String
+  author     User     @relation(fields: [author_id], references: [id])
+  author_id   String
+  question   Question @relation(fields: [question_id], references: [id])
+  question_id String
   answer     String
 }
+

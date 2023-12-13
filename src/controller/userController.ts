@@ -6,6 +6,7 @@ import login from '../useCases/users/login'
 interface ICreateUserBody {
     email:string
     name: string
+    isAdmin: boolean
     password:string
 }
 
@@ -14,29 +15,36 @@ interface ILogFields {
   password: string
 }
 
+interface IReadUser {
+  authHeader: string
+}
 
 export class  UserController {
     async create(
         request: Request<ICreateUserBody>,
         response: Response,
     ):Promise<Response>{
-        const {email, password, name} = request.body;
+        const {email, password, name, isAdmin} = request.body;
 
         const user = await createUser({
             email,
             name,
+            isAdmin,
             password
         })
 
         return response.status(user.status).send(user)
     }
     async read(
-      request: Request,
+      request: Request<IReadUser>,
       response: Response,
     ){
-      let users = await readUser();
 
-      return response.status(200).send(users)
+      const authHeader = request.headers.authorization as string;
+
+      let users = await readUser({authHeader});
+
+      return response.status(users.status).send(users)
     }
     async login(
       request: Request,

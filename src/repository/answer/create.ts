@@ -15,8 +15,8 @@ export default async({
 }: ICreateAnswer) => {
     return await prisma.answer.create({
         data: {
-            authorId: userID,
-            questionId: questionID,
+            author_id: userID,
+            question_id: questionID,
             answer,
 
         },
@@ -38,7 +38,6 @@ export default async({
                     name: true
                 }
             }
-
         }
     })
 }

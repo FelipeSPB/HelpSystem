@@ -4,6 +4,7 @@ import { User } from '@prisma/client';
 interface ICreateUser {
   name:  string,
   email: string,
+  isAdmin: boolean,
   password: string,
 }
 
@@ -11,12 +12,14 @@ interface ICreateUser {
 export default async({
     name,
     email,
+    isAdmin,
     password
 }: ICreateUser): Promise<User> =>{
     return await prisma.user.create({
         data: {
             name,
             email,
+            is_admin: isAdmin,
             password
                 }
     })
