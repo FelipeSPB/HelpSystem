@@ -16,7 +16,7 @@ export class QuestionController {
      request: Request<ICreateQuestionParam,ICreateQuestionBody>,
      response: Response
    ){
-     const id = request.params
+     const { id } = request.params
      const {title, content} = request.body
 
      console.log(title)

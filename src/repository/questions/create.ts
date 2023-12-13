@@ -17,7 +17,7 @@ export default async({
         data: {
           content,
           title,
-          userId: userID,
+          authorId: userID          
         },
         select:{
           title: true,
