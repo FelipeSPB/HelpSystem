@@ -1,4 +1,5 @@
-import readAllUsers from '../../repository/user/readAllUsers.ts'
+import readAllUsers from "../../repository/user/readAllUsers";
+
 
 
 export default async () =>{

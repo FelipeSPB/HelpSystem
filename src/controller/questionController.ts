@@ -1,6 +1,7 @@
 import {Request, Response} from 'express'
 
 import createQuestion from '../useCases/questions/createQuestion'
+import readQuestions from '../useCases/questions/readQuestions'
 
 interface ICreateQuestionParam {
   id: string
@@ -19,8 +20,6 @@ export class QuestionController {
      const { id } = request.params
      const {title, content} = request.body
 
-     console.log(title)
-
      const question = await createQuestion({
        userId: id,
        title,
@@ -28,5 +27,13 @@ export class QuestionController {
      })
 
      return response.status(question.status).send(question)
+   }
+   async read(
+    request: Request,
+    response: Response
+   ){
+      const questions = await readQuestions()
+
+      return response.status(questions.status).send(questions)
    }
 }

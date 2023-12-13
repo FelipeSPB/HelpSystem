@@ -1,5 +1,5 @@
 import {prisma} from '../../database/prisma'
-import { User } from '@prisma/client';
+
 
 export default async ():Promise<OutputUsers[]> =>{
     return await prisma.user.findMany({

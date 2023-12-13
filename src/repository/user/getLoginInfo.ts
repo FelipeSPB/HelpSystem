@@ -1,5 +1,5 @@
 import {prisma} from '../../database/prisma'
-import { User } from '@prisma/client';
+
 
 interface ILog{
   email: string,

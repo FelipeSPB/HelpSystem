@@ -1,4 +1,3 @@
-import { randomUUID } from 'crypto';
 import {prisma} from '../../database/prisma'
 import { User } from '@prisma/client';
 
@@ -19,6 +18,6 @@ export default async({
             name,
             email,
             password
-        }
+                }
     })
 }

@@ -21,4 +21,6 @@ routes.post("/login", userController.login)
 
 routes.post("/:id/create/question", questionController.create)
 
+routes.get("/questions", questionController.read)
+
 export default routes
