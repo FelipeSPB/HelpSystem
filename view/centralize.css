@@ -1,0 +1,21 @@
+*{
+	font-size: 1.1em;
+}
+
+.login-form{
+	padding-top: 10%;
+	text-align: center;
+}
+
+.question-form{
+	padding-top: 9%;
+	text-align: center;
+}
+
+.login-input{
+	width: 30%;
+}
+
+.question-input{
+	width: 50%;
+}
