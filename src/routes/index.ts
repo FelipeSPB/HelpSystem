@@ -23,4 +23,6 @@ routes.post("/:id/create/question", questionController.create)
 
 routes.get("/questions", questionController.read)
 
+routes.get("/question/:questionId", questionController.getOneQuestion)
+
 export default routes

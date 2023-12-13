@@ -12,3 +12,11 @@ interface OutputQuestions {
     title: string
     content: string
 }
+
+interface OutputOneQuestion {
+    title: string
+    content: string
+    author:{
+        name: string
+    }
+}

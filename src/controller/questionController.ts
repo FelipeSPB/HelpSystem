@@ -2,6 +2,7 @@ import {Request, Response} from 'express'
 
 import createQuestion from '../useCases/questions/createQuestion'
 import readQuestions from '../useCases/questions/readQuestions'
+import getQuestion from '../useCases/questions/getQuestion'
 
 interface ICreateQuestionParam {
   id: string
@@ -10,6 +11,10 @@ interface ICreateQuestionParam {
 interface ICreateQuestionBody {
   title: string
   content: string
+}
+
+interface IGetAQuestion {
+  questionId: string
 }
 
 export class QuestionController {
@@ -35,5 +40,18 @@ export class QuestionController {
       const questions = await readQuestions()
 
       return response.status(questions.status).send(questions)
+   }
+   async getOneQuestion(
+    request: Request<IGetAQuestion>,
+    response: Response
+   ){
+    const { questionId } = request.params
+
+    const get = await getQuestion({
+      questionId,
+    })
+
+    return response.status(get.status).send(get)
+
    }
 }
