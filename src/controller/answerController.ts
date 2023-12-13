@@ -17,10 +17,12 @@ export class AnswerController {
       request: Request<ICreateAnswerParam,ICreateAnswerBody>,
       response: Response
     ){
+      const authHeader = request.headers.authorization as string;
       const { userId, questionId } = request.params
       const {answer} = request.body
  
       const newAnswer = await createAnswer({
+        authHeader,
         userId,
         questionId,
         answer,

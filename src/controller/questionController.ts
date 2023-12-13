@@ -26,11 +26,13 @@ export class QuestionController {
      request: Request<ICreateQuestionParam,ICreateQuestionBody>,
      response: Response
    ){
+     const authHeader = request.headers.authorization as string;
      const { id } = request.params
      const {title, content} = request.body
 
      const question = await createQuestion({
-       userId: id,
+      authHeader, 
+      userId: id,
        title,
        content,
      })
@@ -41,7 +43,6 @@ export class QuestionController {
     request: Request<IGetAllQuestions>,
     response: Response
    ){
-
     const authHeader = request.headers.authorization as string;
       const questions = await readQuestions({
         authHeader
