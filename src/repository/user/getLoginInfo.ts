@@ -11,6 +11,8 @@ export default async ({email}:ILog)=>{
         email,
       },
       select: {
+          id: true,
+          name: true,
           email: true,
           password: true
         }

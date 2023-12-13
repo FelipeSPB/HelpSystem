@@ -1,3 +1,5 @@
+import {Config} from "../../config"
+import jwt from "jsonwebtoken"
 import getLoginInfo from '../../repository/user/getLoginInfo'
 
 interface ILoginInfo {
@@ -16,8 +18,6 @@ export default async ({
         message: "Os Campos De Email ou Senha Estão Vazios",
       }
     }
-
-
     let user = await getLoginInfo({email: emailField});
 
     if(!user){
@@ -26,17 +26,30 @@ export default async ({
           message: "Usuário Não Encontrado",
         }
     }
-
     if(user.password != passwordField){
       return{
           status: 403,
           message: "Senha Errada",
         }
-    }else{
+      }
+
+      const secret = Config.SECRET__JWT_KEY
+      const token = jwt.sign(
+        {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+        },
+        secret,
+        {
+          expiresIn: 6000
+        }
+      )
         return {
             status: 200,
             message: "Login Feito Com Sucesso",
-
-          }
+            auth: true,
+            token: token!
         }
+       
 }
