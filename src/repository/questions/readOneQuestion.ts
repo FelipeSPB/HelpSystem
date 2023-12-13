@@ -19,7 +19,17 @@ export default async ({
             select:{
                name: true,
                 }
-            } 
+            },
+          answers: {
+            select:{
+              answer: true,
+              author:{
+                select:{
+                   name: true,
+                    }
+                },
+            }
+          } 
           }
       }
     )
