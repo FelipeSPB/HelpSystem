@@ -1,14 +1,18 @@
-import readAllUsers from "../../repository/user/readAllUsers";
 import jwt, { JwtPayload } from "jsonwebtoken"
-import {Config} from "../../config"
 import { getToken } from "../../util/getToken"
+import edit from "../../repository/user/edit"
 
-interface IReadUsers {
+interface IEditUsers {
     authHeader: string
+    userId: string
+    name: string
+    email: string
+    isAdmin: boolean
+    password: string
 }
 
 
-export default async ({authHeader}:IReadUsers) =>{
+export default async ({authHeader, name, userId, email,isAdmin,password}:IEditUsers) =>{
     if(!authHeader){
         return {
             status: 403,
@@ -43,10 +47,16 @@ export default async ({authHeader}:IReadUsers) =>{
         }
     }
    
-    let user = await readAllUsers();
+    let user = await edit({
+        userId,
+        name,
+        email,
+        isAdmin,
+        password
+    });
     return {
         status: 200,
-        message: "Busca Feita Com Sucesso !",
+        message: "Informações atualizadas Com Sucesso !",
         data: user,
     }
 }

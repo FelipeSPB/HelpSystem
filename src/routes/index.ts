@@ -30,4 +30,8 @@ routes.get("/question/:questionId", questionController.getOneQuestion)
 
 routes.post("/answer/question/:questionId/:userId", answerController.create)
 
+routes.put("/user/:userId", userController.edit)
+
+routes.delete("/user/:userId", userController.delete)
+
 export default routes

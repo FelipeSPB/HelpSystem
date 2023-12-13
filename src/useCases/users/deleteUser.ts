@@ -1,14 +1,16 @@
-import readAllUsers from "../../repository/user/readAllUsers";
 import jwt, { JwtPayload } from "jsonwebtoken"
-import {Config} from "../../config"
 import { getToken } from "../../util/getToken"
+import edit from "../../repository/user/edit"
+import _delete from "../../repository/user/delete"
 
-interface IReadUsers {
+interface IDeleteUser {
     authHeader: string
+    userId: string
+    
 }
 
 
-export default async ({authHeader}:IReadUsers) =>{
+export default async ({authHeader, userId}:IDeleteUser) =>{
     if(!authHeader){
         return {
             status: 403,
@@ -43,10 +45,11 @@ export default async ({authHeader}:IReadUsers) =>{
         }
     }
    
-    let user = await readAllUsers();
+    let user = await _delete({
+        userId,
+        });
     return {
         status: 200,
-        message: "Busca Feita Com Sucesso !",
-        data: user,
-    }
+        message: "Usuário Deletado Com Sucesso !",
+         }
 }
