@@ -71,7 +71,7 @@ export class  UserController {
         emailField: email,
         passwordField: password
       })
-
+      console.log(log)
       return response.status(log.status).send(log)
     }
     async edit(

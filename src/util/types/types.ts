@@ -20,3 +20,10 @@ interface OutputOneQuestion {
         name: string
     }
 }
+
+interface ResponseLogin {
+    status: number
+    message: string
+    auth?: boolean
+    token?: string
+}

@@ -16,6 +16,8 @@ const answerController = new AnswerController();
 
 routes.get("/", main.mainPage)
 
+routes.get("/forum", main.questions)
+
 routes.post("/user", userController.create)
 
 routes.get("/users", userController.read)

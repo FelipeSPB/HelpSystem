@@ -47,7 +47,7 @@ export class QuestionController {
       const questions = await readQuestions({
         authHeader
       })
-
+      console.log(questions)
       return response.status(questions.status).send(questions)
    }
    async getOneQuestion(
